@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="calendarApp">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
     <script src="js/libs/angular.min.js"></script>
+    <script src="js/Calendar.js"></script>
+    <link rel="stylesheet" href="css/calendar.css">
 </head>
 <body>
-
+    <div ng-controller="CalendarController">
+        <h2 class="monthHeader">{{getCurrentMonth()}}</h2>
+        <ul class="month">
+            <li ng-repeat="day in daysInCurrentMonth">
+                <p>{{day}}</p>
+            </li>
+            <div class="clear"></div>
+        </ul>
+    </div>
 </body>
 </html>

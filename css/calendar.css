@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.month,
+.monthHeader {
+    width: 602px;
+    margin: 0 auto;
+}
+
+.monthHeader {
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.month li {
+    list-style: none;
+    float: left;
+    width: 80px;
+    height: 80px;
+    margin: 2px;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.month li p {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+.clear {
+    clear: both;
+}
