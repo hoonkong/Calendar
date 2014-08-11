@@ -1,4 +1,14 @@
-<h2 class="monthHeader">{{getTodaysDate()}}</h2>
-<ul>
-    <li>Day calendar</li>
+<div class="calHeader">
+    <a class="prev">&lt;</a>
+    <span>
+        {{getTodaysDate()}}
+    </span>
+    <a class="next">&gt;</a>
+</div>
+<ul class="day">
+    <li ng-repeat="timeSlot in timeSlots">
+        <label>
+            {{timeSlot.display}}{{timeSlot.meridiem}}
+        </label>
+    </li>
 </ul>
