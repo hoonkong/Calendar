@@ -1,0 +1,9 @@
+<h2 class="monthHeader">{{getCurrentMonth()}}</h2>
+<ul class="month">
+    <li ng-repeat="day in daysInCurrentMonth track by $index">
+        <a href="#/DayCalendar/{{day}}">
+            <p>{{day}}</p>
+        </a>
+    </li>
+    <div class="clear"></div>
+</ul>
