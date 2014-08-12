@@ -1,7 +1,7 @@
 /**
  * Created by hoon on 8/10/14.
  */
-window.App = angular.module("calendarApp", ["ngRoute"])
+window.CalendarApp = angular.module("calendarApp", ["ngRoute"])
     .config(["$routeProvider", function ($routeProvider) {
         $routeProvider
             .when("/", {
@@ -16,12 +16,16 @@ window.App = angular.module("calendarApp", ["ngRoute"])
                 controller: "DayCalendarController",
                 templateUrl: "views/DayCalendar.html"
             })
+            .when("/WeekCalendar", {
+                controller: "WeekCalendarController",
+                templateUrl: "views/WeekCalendar.html"
+            })
             .otherwise( {
                 redirectTo: "/"
             })
     }]);
 
-window.App.monthNames = [
+window.CalendarApp.monthNames = [
     "January",
     "February",
     "March",

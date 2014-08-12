@@ -1,13 +1,22 @@
 /**
  * Created by hoon on 8/10/14.
  */
-App || (App = {});
+CalendarApp || (CalendarApp = {});
 
-App.controller("MonthCalendarController", ["$scope", "$routeParams", function ($scope, $routeParams) {
+CalendarApp.controller("MonthCalendarController", ["$scope", "$routeParams", function ($scope, $routeParams) {
 
     var monthToUse = (function () {
         var monthParam = parseInt($routeParams.month);
         return monthParam - 1 || new Date().getMonth();
+    })();
+
+    var yearToUse = (function () {
+        if (monthToUse > 12) {
+            monthToUse = 1;
+            return
+        } else {
+
+        }
     })();
 
     $scope.daysInCurrentMonth = (function () {
@@ -32,13 +41,7 @@ App.controller("MonthCalendarController", ["$scope", "$routeParams", function ($
     })();
 
     $scope.getCurrentMonth = function () {
-        return App.monthNames[monthToUse];
-    };
-
-    $scope.dayClick = function (day) {
-        if (day) {
-            alert(day + " clicked!");
-        }
+        return CalendarApp.monthNames[monthToUse];
     };
 
     $scope.nextMonth = monthToUse + 2;

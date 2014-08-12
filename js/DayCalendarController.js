@@ -1,9 +1,9 @@
 /**
  * Created by hoon on 8/10/14.
  */
-App || (App = {});
+CalendarApp || (CalendarApp = {});
 
-App.controller("DayCalendarController", ["$scope", "$routeParams", function ($scope, $routeParams) {
+CalendarApp.controller("DayCalendarController", ["$scope", "$routeParams", function ($scope, $routeParams) {
 
     $scope.timeSlots = (function () {
         var timeSlots = [];
@@ -52,7 +52,7 @@ App.controller("DayCalendarController", ["$scope", "$routeParams", function ($sc
                 break;
         }
 
-        return App.monthNames[monthNumber] + " " + $routeParams.day + ordinalSuffix;
+        return CalendarApp.monthNames[monthNumber] + " " + $routeParams.day + ordinalSuffix;
     };
 
     $scope.addEvent = function () {
