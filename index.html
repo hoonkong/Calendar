@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="calendarApp">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
     <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-route.min.js"></script>
+
+    <link rel="stylesheet" href="css/calendar.css">
 </head>
 <body>
-
+    <div ng-view></div>
+    <script src="js/CalendarRouting.js"></script>
+    <script src="js/MonthCalendarController.js"></script>
+    <script src="js/DayCalendarController.js"></script>
 </body>
 </html>
