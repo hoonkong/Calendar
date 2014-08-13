@@ -7,16 +7,29 @@ CalendarApp.controller("MonthCalendarController", ["$scope", "$routeParams", fun
 
     var monthToUse = (function () {
         var monthParam = parseInt($routeParams.month);
-        return monthParam - 1 || new Date().getMonth();
+
+        if (monthParam < 0) {
+            monthParam = -(12 + monthParam);
+        } else if (monthParam < -11) {
+            var multiplyFactor = Math.round(monthParam / 12) * -1;
+            monthParam = 12 * multiplyFactor + monthParam;
+        }
+
+        return !isNaN(monthParam) ? monthParam : new Date().getMonth();
     })();
 
     var yearToUse = (function () {
-        if (monthToUse > 12) {
-            monthToUse = 1;
-            return
-        } else {
-
+        var monthParam = parseInt($routeParams.month);
+        var addToCurrentYear = 0;
+        if (monthParam > 11) {
+            addToCurrentYear = Math.round(monthParam / 12);
+        } else if (monthParam < -11) {
+            addToCurrentYear = Math.round(-monthParam / 12);
+        } else if (monthParam < 0) {
+            addToCurrentYear = -1;
         }
+
+        return new Date().getFullYear() + addToCurrentYear;
     })();
 
     $scope.daysInCurrentMonth = (function () {
@@ -40,11 +53,15 @@ CalendarApp.controller("MonthCalendarController", ["$scope", "$routeParams", fun
         return days;
     })();
 
-    $scope.getCurrentMonth = function () {
-        return CalendarApp.monthNames[monthToUse];
+    $scope.getMonth = function () {
+        return CalendarApp.monthNames[Math.abs(monthToUse % 12)];
     };
 
-    $scope.nextMonth = monthToUse + 2;
+    $scope.getYear = function () {
+        return yearToUse;
+    }
 
-    $scope.prevMonth = monthToUse;
+    $scope.nextMonth = parseInt($routeParams.month) + 1;
+
+    $scope.prevMonth = parseInt($routeParams.month) - 1;
 }]);
