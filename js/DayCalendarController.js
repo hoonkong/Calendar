@@ -52,7 +52,8 @@ CalendarApp.controller("DayCalendarController", ["$scope", "$routeParams", funct
                 break;
         }
 
-        return CalendarApp.monthNames[monthNumber] + " " + $routeParams.day + ordinalSuffix;
+        console.log($routeParams.data);
+        return CalendarApp.monthNames[Math.abs($routeParams.month % 12)] + " " + $routeParams.day + ordinalSuffix + ", " + $routeParams.year;
     };
 
     $scope.addEvent = function () {

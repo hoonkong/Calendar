@@ -1,14 +1,14 @@
 <div class="calHeader">
-    <a class="prev" href="#/{{prevMonth}}">&lt;</a>
+    <a class="prev" href="#/{{prevMonth}}" ng-style="{ display: showPrev }">&lt;</a>
     <span>
         {{getMonth()}} {{getYear()}}
     </span>
     <a class="next" href="#/{{nextMonth}}">&gt;</a>
 </div>
 <ul class="month">
-    <li ng-repeat="day in daysInCurrentMonth track by $index">
-        <a href="#/DayCalendar/{{day}}">
-            <p>{{day}}</p>
+    <li ng-repeat="dayData in daysInCurrentMonth track by $index">
+        <a href="#/Month/{{dayData.month}}/Day/{{dayData.day}}/Year/{{dayData.year}}">
+            <p>{{dayData.day}}</p>
         </a>
     </li>
     <div class="clear"></div>

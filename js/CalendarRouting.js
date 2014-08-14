@@ -12,7 +12,7 @@ window.CalendarApp = angular.module("calendarApp", ["ngRoute"])
                 controller: "MonthCalendarController",
                 templateUrl: "views/MonthCalendar.html"
             })
-            .when("/DayCalendar/:day", {
+            .when("/Month/:month/Day/:day/Year/:year", {
                 controller: "DayCalendarController",
                 templateUrl: "views/DayCalendar.html"
             })
@@ -38,3 +38,12 @@ window.CalendarApp.monthNames = [
     "October",
     "November",
     "December"];
+
+window.CalendarApp.dayNames = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"];
