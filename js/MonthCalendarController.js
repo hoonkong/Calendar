@@ -5,8 +5,13 @@ CalendarApp || (CalendarApp = {});
 
 CalendarApp.controller("MonthCalendarController", ["$scope", "$routeParams", function ($scope, $routeParams) {
 
-    var monthToUse = (function () {
+    var getMonthParam = function () {
         var monthParam = parseInt($routeParams.month);
+        return !isNaN(monthParam) ? monthParam : new Date().getMonth();
+    }
+
+    var monthToUse = (function () {
+        var monthParam = getMonthParam();
 
         if (monthParam < 0) {
             monthParam = -(12 + monthParam);
@@ -15,7 +20,7 @@ CalendarApp.controller("MonthCalendarController", ["$scope", "$routeParams", fun
             monthParam = 12 * multiplyFactor + monthParam;
         }
 
-        return !isNaN(monthParam) ? monthParam : new Date().getMonth();
+        return monthParam;
     })();
 
     var yearToUse = (function () {
@@ -61,7 +66,7 @@ CalendarApp.controller("MonthCalendarController", ["$scope", "$routeParams", fun
         return yearToUse;
     }
 
-    $scope.nextMonth = parseInt($routeParams.month) + 1;
+    $scope.nextMonth = getMonthParam() + 1;
 
-    $scope.prevMonth = parseInt($routeParams.month) - 1;
+    $scope.prevMonth = getMonthParam() - 1;
 }]);
