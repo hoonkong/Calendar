@@ -10,7 +10,8 @@ li {
 
 .month,
 .day,
-.calHeader {
+.calHeader,
+.navBar {
     width: 602px;
     margin: 0 auto;
 }
@@ -92,6 +93,34 @@ li {
     border-right: 1px solid #ccc;
     padding: 2px 5px 0 0;
     font-size: 12px;
+}
+
+.navBar {
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.navBar a {
+    text-decoration: none;
+    display: inline-block;
+    width: 70px;
+    outline: 1px solid #6a6a6a;
+    text-align: center;
+    color: #6a6a6a;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: 5px;
+}
+
+.navBar a:hover {
+    color: #fff;
+    background-color: #000;
+}
+
+.navBar a:active {
+    color: #000;
+    background-color: #ccc;
 }
 
 .clear {

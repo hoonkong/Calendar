@@ -2,6 +2,54 @@
  * Created by hoon on 8/10/14.
  */
 window.CalendarApp = angular.module("calendarApp", ["ngRoute"])
+    .factory("monthNames", function () {
+        return [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"];
+    })
+    .factory("dayNames", function () {
+        return [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"];
+    })
+    .factory("dayTimes", function() {
+        var timeSlots = [];
+
+        for (var i = 0; i < 24; i++) {
+            var displayTime = 0;
+            var meridiem = "am";
+            if (i === 0) {
+                displayTime = 12;
+            } else if (i >= 13) {
+                meridiem = "pm";
+                displayTime = i - 12;
+            } else {
+                displayTime = i;
+            }
+
+            timeSlots.push({
+                display: displayTime,
+                meridiem: meridiem
+            });
+        }
+
+        return timeSlots;
+    })
     .config(["$routeProvider", function ($routeProvider) {
         $routeProvider
             .when("/", {
@@ -16,7 +64,7 @@ window.CalendarApp = angular.module("calendarApp", ["ngRoute"])
                 controller: "DayCalendarController",
                 templateUrl: "views/DayCalendar.html"
             })
-            .when("/WeekCalendar", {
+            .when("/Month/:month/Week/:week", {
                 controller: "WeekCalendarController",
                 templateUrl: "views/WeekCalendar.html"
             })
@@ -24,26 +72,3 @@ window.CalendarApp = angular.module("calendarApp", ["ngRoute"])
                 redirectTo: "/"
             })
     }]);
-
-window.CalendarApp.monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"];
-
-window.CalendarApp.dayNames = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"];

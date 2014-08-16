@@ -3,31 +3,10 @@
  */
 CalendarApp || (CalendarApp = {});
 
-CalendarApp.controller("DayCalendarController", ["$scope", "$routeParams", function ($scope, $routeParams) {
+CalendarApp.controller("DayCalendarController",
+    ["$scope", "$routeParams", "monthNames", "dayTimes", function ($scope, $routeParams, monthNames, dayTimes) {
 
-    $scope.timeSlots = (function () {
-        var timeSlots = [];
-
-        for (var i = 0; i < 24; i++) {
-            var displayTime = 0;
-            var meridiem = "am";
-            if (i === 0) {
-                displayTime = 12;
-            } else if (i >= 13) {
-                meridiem = "pm";
-                displayTime = i - 12;
-            } else {
-                displayTime = i;
-            }
-
-            timeSlots.push({
-                display: displayTime,
-                meridiem: meridiem
-            });
-        }
-
-        return timeSlots;
-    })();
+    $scope.timeSlots = dayTimes;
 
     $scope.getTodaysDate = function () {
         var date = new Date();
@@ -53,7 +32,7 @@ CalendarApp.controller("DayCalendarController", ["$scope", "$routeParams", funct
         }
 
         console.log($routeParams.data);
-        return CalendarApp.monthNames[Math.abs($routeParams.month % 12)] + " " + $routeParams.day + ordinalSuffix + ", " + $routeParams.year;
+        return monthNames[Math.abs($routeParams.month % 12)] + " " + $routeParams.day + ordinalSuffix + ", " + $routeParams.year;
     };
 
     $scope.addEvent = function () {

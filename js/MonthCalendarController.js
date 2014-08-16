@@ -3,7 +3,9 @@
  */
 CalendarApp || (CalendarApp = {});
 
-CalendarApp.controller("MonthCalendarController", ["$scope", "$routeParams", function ($scope, $routeParams) {
+CalendarApp.controller(
+    "MonthCalendarController",
+    ["$scope", "$routeParams", "monthNames", function ($scope, $routeParams, monthNames) {
 
     var getMonthParam = function () {
         var monthParam = parseInt($routeParams.month);
@@ -60,20 +62,20 @@ CalendarApp.controller("MonthCalendarController", ["$scope", "$routeParams", fun
     })();
 
     $scope.getMonth = function () {
-        return CalendarApp.monthNames[Math.abs(monthToUse % 12)];
+        return monthNames[Math.abs(monthToUse % 12)];
     };
 
     $scope.getYear = function () {
         return yearToUse;
     };
 
-    $scope.showPrev = (function () {
+    $scope.showPrev = function () {
         var diff = new Date().getMonth() - getMonthParam();
         if (diff === 12) {
             return "none";
         }
         return "inline";
-    })();
+    };
 
     $scope.nextMonth = getMonthParam() + 1;
 
