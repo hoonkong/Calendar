@@ -1,4 +1,11 @@
-<table>
+<div class="calHeader">
+    <a class="prev" href="#/{{prevMonth}}" ng-style="{ display: showPrev() }">&lt;</a>
+    <span>
+        {{getMonth()}} {{getYear()}}
+    </span>
+    <a class="next" href="#/{{nextMonth}}">&gt;</a>
+</div>
+<table class="week">
     <tr>
         <th></th>
         <th>Sun</th>
@@ -10,7 +17,7 @@
         <th>Sat</th>
     </tr>
     <tr ng-repeat="timeSlot in timeSlots">
-        <td>{{timeSlot.display}}{{timeSlot.meridiem}}</td>
+        <td class="times">{{timeSlot.display}}{{timeSlot.meridiem}}</td>
         <td></td>
         <td></td>
         <td></td>

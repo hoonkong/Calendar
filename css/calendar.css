@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: arial;
+    border-collapse: collapse;
 }
 
 li {
@@ -11,7 +12,8 @@ li {
 .month,
 .day,
 .calHeader,
-.navBar {
+.navBar,
+.week {
     width: 602px;
     margin: 0 auto;
 }
@@ -55,11 +57,6 @@ li {
     color: #6a6a6a;
 }
 
-.month li a:hover p {
-    text-decoration: underline;
-    font-weight: bold;
-}
-
 .month li {
     float: left;
     margin: 2px;
@@ -85,7 +82,8 @@ li {
     border-bottom: 1px solid #ccc;
 }
 
-.day li label {
+.day li label ,
+.week td.times {
     width: 50px;
     height: 100%;
     text-align: right;
@@ -113,14 +111,23 @@ li {
     margin-left: 5px;
 }
 
+.month li a:hover,
 .navBar a:hover {
     color: #fff;
-    background-color: #000;
+    background-color: #ccc;
 }
 
-.navBar a:active {
-    color: #000;
-    background-color: #ccc;
+.navBar a:active,
+.month li a:active {
+    color: #fff;
+    background-color: #000;
+
+}
+
+.week td {
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
 }
 
 .clear {
