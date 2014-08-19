@@ -1,0 +1,12 @@
+<div ng-controller="NavBarController" class="navBar">
+    <div>
+        <a class="prev" href="#/{{prevMonth}}" ng-style="{ display: showPrev() }">&lt;</a>
+        <a class="next" href="#/{{nextMonth}}">&gt;</a>
+    </div>
+    <div>
+        <a href="#/Month/{{getMonth()}}/Day/{{getDay()}}/Year/{{getYear()}}">Today</a>
+        <a href="#/Month/{{getMonth()}}/Week/{{getWeek()}}">Week</a>
+        <a href="#/{{getMonth()}}">Month</a>
+    </div>
+    <span class="clear"></span>
+</div>

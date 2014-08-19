@@ -9,11 +9,7 @@
     <link rel="stylesheet" href="css/calendar.css">
 </head>
 <body>
-    <div ng-controller="NavBarController" class="navBar">
-        <a href="#/Month/{{getMonth()}}/Day/{{getDay()}}/Year/{{getYear()}}">Today</a>
-        <a href="#/Month/{{getMonth()}}/Week/{{getWeek()}}">Week</a>
-        <a href="#/{{getMonth()}}">Month</a>
-    </div>
+    <div ng-include="'views/NavBar.html'"></div>
     <div ng-view></div>
     <script src="js/CalendarRouting.js"></script>
     <script src="js/DateService.js"></script>
