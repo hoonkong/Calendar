@@ -1,7 +1,9 @@
 /**
  * Created by hoon on 8/16/14.
  */
-CalendarApp || (CalendarApp = {});
+if (!CalendarApp) {
+    throw "CalendarApp is not defined";
+}
 
 CalendarApp.controller("WeekCalendarController",
     ["$scope", "$routeParams", "monthNames", "dayTimes", function ($scope, $routeParams, monthNames, dayTimes) {
@@ -9,6 +11,10 @@ CalendarApp.controller("WeekCalendarController",
 
     $scope.getMonth = function () {
         return monthNames[$routeParams.month];
+    };
+
+    $scope.getDate = function () {
+
     };
 }]);
 

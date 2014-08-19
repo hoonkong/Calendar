@@ -1,11 +1,13 @@
 /**
  * Created by hoon on 8/10/14.
  */
-CalendarApp || (CalendarApp = {});
+if (!CalendarApp) {
+    throw "CalendarApp is not defined";
+}
 
 CalendarApp.controller(
     "MonthCalendarController",
-    ["$scope", "$routeParams", "monthNames", function ($scope, $routeParams, monthNames) {
+    ["$scope", "$routeParams", "monthNames", "dateService", function ($scope, $routeParams, monthNames, dateService) {
 
     var getMonthParam = function () {
         var monthParam = parseInt($routeParams.month);
@@ -22,7 +24,7 @@ CalendarApp.controller(
         return monthParam;
     })();
 
-    var yearToUse = (function () {
+    /*var yearToUse = (function () {
         var monthParam = parseInt($routeParams.month);
         var addToCurrentYear = 0;
         if (monthParam > 11) {
@@ -34,14 +36,14 @@ CalendarApp.controller(
         }
 
         return new Date().getFullYear() + addToCurrentYear;
-    })();
+    })();*/
 
     $scope.daysInCurrentMonth = (function () {
         var days = [];
 
         var today = new Date();
 
-        var month = monthToUse;
+        var month = dateService.getMonth();
         var year = today.getFullYear();
 
         var firstDay = new Date(year, month, 1).getDay();
@@ -62,11 +64,11 @@ CalendarApp.controller(
     })();
 
     $scope.getMonth = function () {
-        return monthNames[Math.abs(monthToUse % 12)];
+        return monthNames[Math.abs(dateService.getMonth() % 12)];
     };
 
     $scope.getYear = function () {
-        return yearToUse;
+        return dateService.getYear();
     };
 
     $scope.showPrev = function () {

@@ -1,7 +1,9 @@
 /**
  * Created by hoon on 8/11/14.
  */
-CalendarApp || (CalendarApp = {});
+if (!CalendarApp) {
+    throw "CalendarApp is not defined";
+}
 
 CalendarApp.controller("NavBarController", ["$scope", function ($scope) {
     $scope.getMonth = function () {

@@ -1,7 +1,9 @@
 /**
  * Created by hoon on 8/10/14.
  */
-window.CalendarApp = angular.module("calendarApp", ["ngRoute"])
+var CalendarApp = {};
+
+CalendarApp = angular.module("calendarApp", ["ngRoute"])
     .factory("monthNames", function () {
         return [
             "January",
@@ -33,9 +35,12 @@ window.CalendarApp = angular.module("calendarApp", ["ngRoute"])
         for (var i = 0; i < 24; i++) {
             var displayTime = 0;
             var meridiem = "am";
-            if (i === 0) {
+            if (i === 0 || i === 12) {
                 displayTime = 12;
-            } else if (i >= 13) {
+                if (i === 12) {
+                    meridiem = "pm";
+                }
+            } else if (i > 12) {
                 meridiem = "pm";
                 displayTime = i - 12;
             } else {

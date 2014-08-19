@@ -1,7 +1,9 @@
 /**
  * Created by hoon on 8/10/14.
  */
-CalendarApp || (CalendarApp = {});
+if (!CalendarApp) {
+    throw "CalendarApp is not defined";
+}
 
 CalendarApp.controller("DayCalendarController",
     ["$scope", "$routeParams", "monthNames", "dayTimes", function ($scope, $routeParams, monthNames, dayTimes) {
