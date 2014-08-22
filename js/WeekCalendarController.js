@@ -18,7 +18,13 @@ CalendarApp.controller("WeekCalendarController",
             };
 
             calendarControllerInterface.getTitle = function () {
-                return monthNames[$routeParams.month];
+                var date = new Date($routeParams.year, $routeParams.month, $routeParams.day);
+                var dayOfWeek = date.getDay();
+
+                var startOfWeek = parseInt($routeParams.day) - dayOfWeek;
+                var endOfWeek = startOfWeek + 6;
+
+                return monthNames[$routeParams.month] + " " + startOfWeek + " - " + endOfWeek;
             };
 
             $scope.timeSlots = dayTimes;

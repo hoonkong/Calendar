@@ -61,7 +61,7 @@ CalendarApp = angular.module("calendarApp", ["ngRoute"])
                 controller: "MonthCalendarController",
                 templateUrl: "views/MonthCalendar.html"
             })
-            .when("/Month/:month/Year/:year", {
+            .when("/Month/:month/ForDay/:day/Year/:year", {
                 controller: "MonthCalendarController",
                 templateUrl: "views/MonthCalendar.html"
             })

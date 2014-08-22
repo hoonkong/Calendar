@@ -7,15 +7,27 @@ if (!CalendarApp) {
 
 CalendarApp.controller("NavBarController", ["$scope", "$routeParams", "calendarControllerInterface", function ($scope, $routeParams, calendarControllerInterface) {
     $scope.getMonth = function () {
-        return $routeParams.month || new Date().getMonth();
+        return $routeParams.month || this.getThisMonth();
     };
 
     $scope.getDay = function () {
-        return $routeParams.day || new Date().getDate();
+        return $routeParams.day || this.getToday();
     };
 
     $scope.getYear = function () {
-        return $routeParams.year || new Date().getFullYear();
+        return $routeParams.year || this.getThisYear();
+    };
+
+    $scope.getThisMonth = function () {
+        return new Date().getMonth();
+    };
+
+    $scope.getToday = function () {
+        return new Date().getDate();
+    };
+
+    $scope.getThisYear = function () {
+        return new Date().getFullYear();
     };
 
     $scope.getPrevUrl = function () {
