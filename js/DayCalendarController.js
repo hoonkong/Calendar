@@ -6,38 +6,48 @@ if (!CalendarApp) {
 }
 
 CalendarApp.controller("DayCalendarController",
-    ["$scope", "$routeParams", "monthNames", "dayTimes", function ($scope, $routeParams, monthNames, dayTimes) {
+    ["$scope", "$routeParams", "monthNames", "dayTimes", "calendarControllerInterface",
+        function ($scope, $routeParams, monthNames, dayTimes, calendarControllerInterface) {
+            calendarControllerInterface.getPrevUrl = function () {
+                return "DayPrev";
+            };
 
-    $scope.timeSlots = dayTimes;
+            calendarControllerInterface.getNextUrl = function () {
+                return "DayNext";
+            };
 
-    $scope.getTodaysDate = function () {
-        var date = new Date();
-        var monthNumber = date.getMonth();
+            calendarControllerInterface.getTitle = function () {
+                var date = new Date();
+                var monthNumber = date.getMonth();
 
-        var day = parseInt($routeParams.day);
+                var day = parseInt($routeParams.day);
 
-        var ordinalSuffix = "th";
+                var ordinalSuffix = "th";
 
-        switch (day) {
-            case 1:
-                ordinalSuffix = "st";
-                break;
-            case 2:
-                ordinalSuffix = "nd";
-                break;
-            case 3:
-                ordinalSuffix = "rd";
-                break;
-            default :
-                ordinalSuffix = "th";
-                break;
+                switch (day) {
+                    case 1:
+                        ordinalSuffix = "st";
+                        break;
+                    case 2:
+                        ordinalSuffix = "nd";
+                        break;
+                    case 3:
+                        ordinalSuffix = "rd";
+                        break;
+                    default :
+                        ordinalSuffix = "th";
+                        break;
+                }
+
+                console.log($routeParams.data);
+                return monthNames[Math.abs($routeParams.month % 12)] + " " + $routeParams.day + ordinalSuffix + ", " + $routeParams.year;
+            };
+
+            $scope.timeSlots = dayTimes;
+
+            $scope.addEvent = function () {
+
+            };
         }
-
-        console.log($routeParams.data);
-        return monthNames[Math.abs($routeParams.month % 12)] + " " + $routeParams.day + ordinalSuffix + ", " + $routeParams.year;
-    };
-
-    $scope.addEvent = function () {
-
-    };
-}]);
+    ]
+);

@@ -5,7 +5,7 @@ if (!CalendarApp) {
     throw "CalendarApp is not defined";
 }
 
-CalendarApp.controller("NavBarController", ["$scope", function ($scope) {
+CalendarApp.controller("NavBarController", ["$scope", "calendarControllerInterface", function ($scope, calendarControllerInterface) {
     $scope.getMonth = function () {
         return new Date().getMonth();
     };
@@ -21,4 +21,16 @@ CalendarApp.controller("NavBarController", ["$scope", function ($scope) {
     $scope.getWeek = function () {
         return new Date().getDate();
     };
+
+    $scope.getPrevUrl = function () {
+        return calendarControllerInterface.getPrevUrl();
+    };
+
+    $scope.getNextUrl = function () {
+        return calendarControllerInterface.getNextUrl();
+    };
+
+    $scope.getTitle = function () {
+        return calendarControllerInterface.getTitle();
+    }
 }]);

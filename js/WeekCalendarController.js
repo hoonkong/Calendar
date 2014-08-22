@@ -6,16 +6,28 @@ if (!CalendarApp) {
 }
 
 CalendarApp.controller("WeekCalendarController",
-    ["$scope", "$routeParams", "monthNames", "dayTimes", function ($scope, $routeParams, monthNames, dayTimes) {
-    $scope.timeSlots = dayTimes;
+    ["$scope", "$routeParams", "monthNames", "dayTimes", "calendarControllerInterface",
+        function ($scope, $routeParams, monthNames, dayTimes, calendarControllerInterface) {
 
-    $scope.getMonth = function () {
-        return monthNames[$routeParams.month];
-    };
+            calendarControllerInterface.getPrevUrl = function () {
+                return "WeekPrev";
+            };
 
-    $scope.getDate = function () {
+            calendarControllerInterface.getNextUrl = function () {
+                return "WeekNext";
+            };
 
-    };
-}]);
+            calendarControllerInterface.getTitle = function () {
+                return monthNames[$routeParams.month];
+            };
+
+            $scope.timeSlots = dayTimes;
+
+            $scope.getDate = function () {
+
+            };
+        }
+    ]
+);
 
 
