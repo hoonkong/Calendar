@@ -5,21 +5,17 @@ if (!CalendarApp) {
     throw "CalendarApp is not defined";
 }
 
-CalendarApp.controller("NavBarController", ["$scope", "calendarControllerInterface", function ($scope, calendarControllerInterface) {
+CalendarApp.controller("NavBarController", ["$scope", "$routeParams", "calendarControllerInterface", function ($scope, $routeParams, calendarControllerInterface) {
     $scope.getMonth = function () {
-        return new Date().getMonth();
+        return $routeParams.month || new Date().getMonth();
     };
 
     $scope.getDay = function () {
-        return new Date().getDate();
+        return $routeParams.day || new Date().getDate();
     };
 
     $scope.getYear = function () {
-        return new Date().getFullYear();
-    };
-
-    $scope.getWeek = function () {
-        return new Date().getDate();
+        return $routeParams.year || new Date().getFullYear();
     };
 
     $scope.getPrevUrl = function () {

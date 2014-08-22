@@ -41,20 +41,6 @@ CalendarApp.controller(
                 return monthNames[Math.abs(dateService.getMonth() % 12)] + " " + dateService.getYear();
             };
 
-            /*var yearToUse = (function () {
-                var monthParam = parseInt($routeParams.month);
-                var addToCurrentYear = 0;
-                if (monthParam > 11) {
-                    addToCurrentYear = Math.round(monthParam / 12);
-                } else if (monthParam < -11) {
-                    addToCurrentYear = Math.round(-monthParam / 12);
-                } else if (monthParam < 0) {
-                    addToCurrentYear = -1;
-                }
-
-                return new Date().getFullYear() + addToCurrentYear;
-            })();*/
-
             $scope.daysInCurrentMonth = (function () {
                 var days = [];
 
@@ -79,14 +65,6 @@ CalendarApp.controller(
 
                 return days;
             })();
-
-            $scope.getMonth = function () {
-                return monthNames[Math.abs(dateService.getMonth() % 12)];
-            };
-
-            $scope.getYear = function () {
-                return dateService.getYear();
-            };
 
             $scope.showPrev = function () {
                 var diff = new Date().getMonth() - getMonthParam();

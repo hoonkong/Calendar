@@ -1,5 +1,6 @@
 <div ng-controller="NavBarController" class="navBar">
     <div class="calNav">
+        <a href="#/Month/{{getMonth()}}/Day/{{getDay()}}/Year/{{getYear()}}">Today</a>
         <a class="prev" href="#/{{getPrevUrl()}}" ng-style="{ display: showPrev() }">&lt;</a>
         <a class="next" href="#/{{getNextUrl()}}">&gt;</a>
     </div>
@@ -7,9 +8,9 @@
         {{getTitle()}}
     </div>
     <div class="calType">
-        <a href="#/Month/{{getMonth()}}/Day/{{getDay()}}/Year/{{getYear()}}">Today</a>
-        <a href="#/Month/{{getMonth()}}/Week/{{getWeek()}}">Week</a>
-        <a href="#/{{getMonth()}}">Month</a>
+        <a href="#/Month/{{getMonth()}}/Day/{{getDay()}}/Year/{{getYear()}}">Day</a>
+        <a href="#/Month/{{getMonth()}}/WeekOf/{{getDay()}}/Year/{{getYear()}}">Week</a>
+        <a href="#/Month/{{getMonth()}}/Year/{{getYear()}}">Month</a>
     </div>
     <div class="clear"></div>
 </div>
