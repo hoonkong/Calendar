@@ -1,6 +1,6 @@
 <div ng-controller="NavBarController" class="navBar">
     <div class="calNav">
-        <a href="#/Month/{{getThisMonth()}}/Day/{{getToday()}}/Year/{{getThisYear()}}">Today</a>
+        <a href="#{{getTodayUrl()}}">Today</a>
         <a class="prev" href="#/{{getPrevUrl()}}" ng-style="{ display: showPrev() }">&lt;</a>
         <a class="next" href="#/{{getNextUrl()}}">&gt;</a>
     </div>

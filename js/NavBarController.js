@@ -62,6 +62,13 @@ if (typeof CalendarApp === "undefined" || !CalendarApp) {
             $scope.getMonthUrl = function () {
                 return formatUrl(constants.monthUrlFormat);
             };
+
+            $scope.getTodayUrl = function () {
+                return constants.dayUrlFormat
+                    .replace("{month}", getThisMonth())
+                    .replace("{day}", getToday())
+                    .replace("{year}", getThisYear());
+            };
         }
     ]);
 })(CalendarApp);
