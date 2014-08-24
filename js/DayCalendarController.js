@@ -1,53 +1,57 @@
 /**
  * Created by hoon on 8/10/14.
  */
-if (!CalendarApp) {
-    throw "CalendarApp is not defined";
+if (typeof CalendarApp === "undefined" || !CalendarApp) {
+    throw "App not initialized";
 }
 
-CalendarApp.controller("DayCalendarController",
-    ["$scope", "$routeParams", "monthNames", "dayTimes", "calendarControllerInterface",
-        function ($scope, $routeParams, monthNames, dayTimes, calendarControllerInterface) {
-            calendarControllerInterface.getPrevUrl = function () {
-                return "DayPrev";
-            };
+(function (calApp) {
+    "use strict";
 
-            calendarControllerInterface.getNextUrl = function () {
-                return "DayNext";
-            };
+    calApp.controller("DayCalendarController",
+        ["$scope", "$routeParams", "monthNames", "dayTimes", "calendarControllerInterface",
+            function ($scope, $routeParams, monthNames, dayTimes, calendarControllerInterface) {
+                calendarControllerInterface.getPrevUrl = function () {
+                    return "DayPrev";
+                };
 
-            calendarControllerInterface.getTitle = function () {
-                var date = new Date();
-                var monthNumber = date.getMonth();
+                calendarControllerInterface.getNextUrl = function () {
+                    return "DayNext";
+                };
 
-                var day = parseInt($routeParams.day);
+                calendarControllerInterface.getTitle = function () {
+                    var date = new Date();
+                    var monthNumber = date.getMonth();
 
-                var ordinalSuffix = "th";
+                    var day = parseInt($routeParams.day);
 
-                switch (day) {
-                    case 1:
-                        ordinalSuffix = "st";
-                        break;
-                    case 2:
-                        ordinalSuffix = "nd";
-                        break;
-                    case 3:
-                        ordinalSuffix = "rd";
-                        break;
-                    default :
-                        ordinalSuffix = "th";
-                        break;
-                }
+                    var ordinalSuffix = "th";
 
-                console.log($routeParams.data);
-                return monthNames[Math.abs($routeParams.month % 12)] + " " + $routeParams.day + ordinalSuffix + ", " + $routeParams.year;
-            };
+                    switch (day) {
+                        case 1:
+                            ordinalSuffix = "st";
+                            break;
+                        case 2:
+                            ordinalSuffix = "nd";
+                            break;
+                        case 3:
+                            ordinalSuffix = "rd";
+                            break;
+                        default :
+                            ordinalSuffix = "th";
+                            break;
+                    }
 
-            $scope.timeSlots = dayTimes;
+                    console.log($routeParams.data);
+                    return monthNames[Math.abs($routeParams.month % 12)] + " " + $routeParams.day + ordinalSuffix + ", " + $routeParams.year;
+                };
 
-            $scope.addEvent = function () {
+                $scope.timeSlots = dayTimes;
 
-            };
-        }
-    ]
-);
+                $scope.addEvent = function () {
+
+                };
+            }
+        ]
+    );
+})(CalendarApp);

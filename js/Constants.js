@@ -1,13 +1,16 @@
 /**
  * Created by hoon on 8/22/14.
  */
-
-if (!CalendarApp) {
-    throw "CalendarApp is not defined";
+if (typeof CalendarApp === "undefined" || !CalendarApp) {
+    throw "App not initialized";
 }
 
-CalendarApp.service("constants", function () {
-    this.monthUrlFormat = "/Month/{month}/ForDay/{day}/Year/{year}";
-    this.dayUrlFormat = "/Month/{month}/Day/{day}/Year/{year}";
-    this.weekUrlFormat = "/Month/{month}/WeekOf/{day}/Year/{year}";
-});
+(function (calApp) {
+    "use strict";
+
+    calApp.service("constants", function () {
+        this.monthUrlFormat = "/Month/{month}/ForDay/{day}/Year/{year}";
+        this.dayUrlFormat = "/Month/{month}/Day/{day}/Year/{year}";
+        this.weekUrlFormat = "/Month/{month}/WeekOf/{day}/Year/{year}";
+    });
+})(CalendarApp);

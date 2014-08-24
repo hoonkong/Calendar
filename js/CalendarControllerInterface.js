@@ -1,21 +1,25 @@
 /**
  * Created by hoon on 8/20/14.
  */
-
-if (!CalendarApp) {
-    throw "CalendarApp is not defined";
+if (typeof CalendarApp === "undefined" || !CalendarApp) {
+    throw "App not initialized";
 }
 
-CalendarApp.service("calendarControllerInterface", function () {
-   this.getPrevUrl = function () {
-       //throw "getPrevUrl not implemented";
-   };
+(function (calApp) {
+    "use strict";
 
-   this.getNextUrl = function () {
-       //throw "getNextUrl not implemented";
-   };
+    calApp.service("calendarControllerInterface", function () {
+        this.getPrevUrl = function () {
+            //throw "getPrevUrl not implemented";
+        };
 
-   this.getTitle = function () {
-        //throw "getTitle not implemented";
-   };
-});
+        this.getNextUrl = function () {
+            //throw "getNextUrl not implemented";
+        };
+
+        this.getTitle = function () {
+            //throw "getTitle not implemented";
+        };
+    });
+})(CalendarApp);
+
