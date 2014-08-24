@@ -25,10 +25,6 @@ CalendarApp.controller(
                 return monthParam;
             })();
 
-            var name = "Month1";
-
-            var dayUrlFormat = "/Month/{month}/Day/{day}/Year/{year}";
-
             calendarControllerInterface.getPrevUrl = function () {
                 return getMonthParam() - 1;
             };

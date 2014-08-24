@@ -8,7 +8,6 @@ if (!CalendarApp) {
 CalendarApp.controller("WeekCalendarController",
     ["$scope", "$routeParams", "monthNames", "dayTimes", "calendarControllerInterface",
         function ($scope, $routeParams, monthNames, dayTimes, calendarControllerInterface) {
-
             calendarControllerInterface.getPrevUrl = function () {
                 return "WeekPrev";
             };

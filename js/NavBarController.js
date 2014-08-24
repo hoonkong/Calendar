@@ -5,40 +5,61 @@ if (!CalendarApp) {
     throw "CalendarApp is not defined";
 }
 
-CalendarApp.controller("NavBarController", ["$scope", "$routeParams", "calendarControllerInterface", function ($scope, $routeParams, calendarControllerInterface) {
-    $scope.getMonth = function () {
-        return $routeParams.month || this.getThisMonth();
-    };
+CalendarApp.controller("NavBarController", ["$scope", "$routeParams", "calendarControllerInterface", "constants",
+    function ($scope, $routeParams, calendarControllerInterface, constants) {
+        var getThisMonth = function () {
+            return new Date().getMonth();
+        };
 
-    $scope.getDay = function () {
-        return $routeParams.day || this.getToday();
-    };
+        var getToday = function () {
+            return new Date().getDate();
+        };
 
-    $scope.getYear = function () {
-        return $routeParams.year || this.getThisYear();
-    };
+        var getThisYear = function () {
+            return new Date().getFullYear();
+        };
 
-    $scope.getThisMonth = function () {
-        return new Date().getMonth();
-    };
+        var getMonth = function () {
+            return $routeParams.month || getThisMonth();
+        };
 
-    $scope.getToday = function () {
-        return new Date().getDate();
-    };
+        var getDay = function () {
+            return $routeParams.day || getToday();
+        };
 
-    $scope.getThisYear = function () {
-        return new Date().getFullYear();
-    };
+        var getYear = function () {
+            return $routeParams.year || getThisYear();
+        };
 
-    $scope.getPrevUrl = function () {
-        return calendarControllerInterface.getPrevUrl();
-    };
+        var formatUrl = function (format) {
+            return format
+                .replace("{month}", getMonth())
+                .replace("{day}", getDay())
+                .replace("{year}", getYear());
+        };
 
-    $scope.getNextUrl = function () {
-        return calendarControllerInterface.getNextUrl();
-    };
+        $scope.getPrevUrl = function () {
+            return calendarControllerInterface.getPrevUrl();
+        };
 
-    $scope.getTitle = function () {
-        return calendarControllerInterface.getTitle();
+        $scope.getNextUrl = function () {
+            return calendarControllerInterface.getNextUrl();
+        };
+
+        $scope.getTitle = function () {
+            return calendarControllerInterface.getTitle();
+        };
+
+        $scope.getDayUrl = function () {
+            return formatUrl(constants.dayUrlFormat);
+        };
+
+        $scope.getWeekUrl = function () {
+            return formatUrl(constants.weekUrlFormat);
+        };
+
+        $scope.getMonthUrl = function () {
+            return formatUrl(constants.monthUrlFormat);
+        };
     }
-}]);
+]);

@@ -8,14 +8,14 @@ if (!CalendarApp) {
 
 CalendarApp.service("calendarControllerInterface", function () {
    this.getPrevUrl = function () {
-       throw "getPrevUrl not implemented";
+       //throw "getPrevUrl not implemented";
    };
 
    this.getNextUrl = function () {
-       throw "getNextUrl not implemented";
+       //throw "getNextUrl not implemented";
    };
 
    this.getTitle = function () {
-        throw "getTitle not implemented";
+        //throw "getTitle not implemented";
    };
 });
