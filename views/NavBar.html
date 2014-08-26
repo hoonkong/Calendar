@@ -1,8 +1,8 @@
 <div ng-controller="NavBarController" class="navBar">
     <div class="calNav">
         <a href="#{{getTodayUrl()}}">Today</a>
-        <a class="prev" href="#/{{getPrevUrl()}}" ng-style="{ display: showPrev() }">&lt;</a>
-        <a class="next" href="#/{{getNextUrl()}}">&gt;</a>
+        <a class="prev" href="#{{getPrevUrl()}}" ng-style="{ display: showPrev() }">&lt;</a>
+        <a class="next" href="#{{getNextUrl()}}">&gt;</a>
     </div>
     <div class="calTitle">
         {{getTitle()}}

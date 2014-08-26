@@ -10,30 +10,22 @@ if (typeof CalendarApp === "undefined" || !CalendarApp) {
 
     calApp.controller(
         "MonthCalendarController",
-        ["$scope", "$routeParams", "monthNames", "dateService", "calendarControllerInterface",
-            function ($scope, $routeParams, monthNames, dateService, calendarControllerInterface) {
-
-                var getMonthParam = function () {
-                    var monthParam = parseInt($routeParams.month);
-                    return !isNaN(monthParam) ? monthParam : new Date().getMonth();
-                }
-
-                var monthToUse = (function () {
-                    var monthParam = getMonthParam();
-
-                    if (monthParam < 0) {
-                        monthParam = -(12 + monthParam);
-                    }
-
-                    return monthParam;
-                })();
-
+        ["$scope", "$routeParams", "monthNames", "dateService", "calendarControllerInterface", "constants",
+            function ($scope, $routeParams, monthNames, dateService, calendarControllerInterface , constants) {
                 calendarControllerInterface.getPrevUrl = function () {
-                    return getMonthParam() - 1;
+                    var prevUrl = constants.monthUrlFormat
+                        .replace("{month}", (dateService.getMonth() - 1))
+                        .replace("{day}", dateService.getDate())
+                        .replace("{year}", dateService.getYear());
+                    return prevUrl;
                 };
 
                 calendarControllerInterface.getNextUrl = function () {
-                    return getMonthParam() + 1;
+                  var nextUrl = constants.monthUrlFormat
+                        .replace("{month}", (dateService.getMonth() + 1))
+                        .replace("{day}", dateService.getDate())
+                        .replace("{year}", dateService.getYear());
+                    return nextUrl;
                 };
 
                 calendarControllerInterface.getTitle = function () {
@@ -66,7 +58,7 @@ if (typeof CalendarApp === "undefined" || !CalendarApp) {
                 })();
 
                 $scope.showPrev = function () {
-                    var diff = new Date().getMonth() - getMonthParam();
+                    var diff = new Date().getMonth() - dateService.getMonth();
                     if (diff === 12) {
                         return "none";
                     }

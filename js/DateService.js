@@ -10,7 +10,9 @@ if (typeof CalendarApp === "undefined" || !CalendarApp) {
 
     calApp.service("dateService", ["$routeParams", function ($routeParams) {
         var getDate = function () {
-
+            var dayParam = parseInt($routeParams.day);
+            dayParam = !isNaN(dayParam) ? dayParam : new Date().getDate();
+            return dayParam;
         };
 
         var getMonth = function () {
