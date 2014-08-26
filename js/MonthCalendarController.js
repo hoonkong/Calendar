@@ -21,7 +21,7 @@ if (typeof CalendarApp === "undefined" || !CalendarApp) {
                 };
 
                 calendarControllerInterface.getNextUrl = function () {
-                  var nextUrl = constants.monthUrlFormat
+                    var nextUrl = constants.monthUrlFormat
                         .replace("{month}", (dateService.getMonth() + 1))
                         .replace("{day}", dateService.getDate())
                         .replace("{year}", dateService.getYear());

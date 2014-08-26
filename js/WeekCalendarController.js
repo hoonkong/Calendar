@@ -7,14 +7,36 @@ if (typeof CalendarApp === "undefined" || !CalendarApp) {
 
 (function (calApp) {
     calApp.controller("WeekCalendarController",
-        ["$scope", "$routeParams", "monthNames", "dayTimes", "calendarControllerInterface",
-            function ($scope, $routeParams, monthNames, dayTimes, calendarControllerInterface) {
+        ["$scope", "$routeParams", "monthNames", "dayTimes", "dateService", "calendarControllerInterface", "constants",
+            function ($scope, $routeParams, monthNames, dayTimes, dateService, calendarControllerInterface, constants) {
                 calendarControllerInterface.getPrevUrl = function () {
-                    return "WeekPrev";
+                    var date = dateService.getDate() - 7;
+                    var month = dateService.getMonth();
+                    if (date <= 0) {
+                        date = 31 + date;
+                        month--;
+                    }
+
+                    var prevUrl = constants.weekUrlFormat
+                        .replace("{month}", month)
+                        .replace("{day}", date)
+                        .replace("{year}", dateService.getYear());
+                    return prevUrl;
                 };
 
                 calendarControllerInterface.getNextUrl = function () {
-                    return "WeekNext";
+                    var date = dateService.getDate() + 7;
+                    var month = dateService.getMonth();
+                    if (date > 31) {
+                        date = date - 31;
+                        month++;
+                    }
+
+                    var nextUrl = constants.weekUrlFormat
+                        .replace("{month}", month)
+                        .replace("{day}", date)
+                        .replace("{year}", dateService.getYear());
+                    return nextUrl;
                 };
 
                 calendarControllerInterface.getTitle = function () {

@@ -9,14 +9,36 @@ if (typeof CalendarApp === "undefined" || !CalendarApp) {
     "use strict";
 
     calApp.controller("DayCalendarController",
-        ["$scope", "$routeParams", "monthNames", "dayTimes", "calendarControllerInterface",
-            function ($scope, $routeParams, monthNames, dayTimes, calendarControllerInterface) {
+        ["$scope", "$routeParams", "monthNames", "dayTimes", "dateService", "calendarControllerInterface", "constants",
+            function ($scope, $routeParams, monthNames, dayTimes, dateService, calendarControllerInterface, constants) {
                 calendarControllerInterface.getPrevUrl = function () {
-                    return "DayPrev";
+                    var date = dateService.getDate() - 1;
+                    var month = dateService.getMonth();
+                    if (date <= 0) {
+                        date = 31;
+                        month--;
+                    }
+
+                    var prevUrl = constants.dayUrlFormat
+                        .replace("{month}", month)
+                        .replace("{day}", date)
+                        .replace("{year}", dateService.getYear());
+                    return prevUrl;
                 };
 
                 calendarControllerInterface.getNextUrl = function () {
-                    return "DayNext";
+                    var date = dateService.getDate() + 1;
+                    var month = dateService.getMonth();
+                    if (date > 31) {
+                        date = 1;
+                        month++;
+                    }
+
+                    var nextUrl = constants.dayUrlFormat
+                        .replace("{month}", month)
+                        .replace("{day}", date)
+                        .replace("{year}", dateService.getYear());
+                    return nextUrl;
                 };
 
                 calendarControllerInterface.getTitle = function () {
