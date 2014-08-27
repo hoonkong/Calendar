@@ -70,8 +70,8 @@ if (typeof CalendarApp === "undefined" || !CalendarApp) {
 
                 $scope.timeSlots = dayTimes;
 
-                $scope.addEvent = function () {
-
+                $scope.addEvent = function (flag) {
+                    alert("add event! " + (flag === 0 ? "first half" : "second half"));
                 };
             }
         ]

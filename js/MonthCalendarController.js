@@ -40,18 +40,27 @@ if (typeof CalendarApp === "undefined" || !CalendarApp) {
                     var month = dateService.getMonth();
                     var year = today.getFullYear();
 
+
+
                     var firstDay = new Date(year, month, 1).getDay();
+                    var lastDateObj = new Date(year, month + 1, 0);
+                    var lastDate = lastDateObj.getDate();
+                    var lastDay = lastDateObj.getDay();
 
                     for (var i = 0; i < firstDay; i++) {
                         days.push({});
                     }
 
-                    for (var i = 1; i <= 31; i++) {
+                    for (var i = 1; i <= lastDate; i++) {
                         days.push({
                             day: i,
                             month: month,
                             year: year
                         });
+                    }
+
+                    for (var i = 0; i < 6 - lastDay; i++) {
+                        days.push({});
                     }
 
                     return days;

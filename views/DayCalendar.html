@@ -1,7 +1,17 @@
-<ul class="day">
-    <li ng-repeat="timeSlot in timeSlots">
-        <label>
-            {{timeSlot.display}}{{timeSlot.meridiem}}
-        </label>
-    </li>
-</ul>
+<table class="day" cellpadding="0" cellspacing="0">
+    <tr ng-repeat="timeSlot in timeSlots">
+        <td class="label">
+            <div>
+                {{timeSlot.display}}{{timeSlot.meridiem}}
+            </div>
+        </td>
+        <td class="events">
+            <div ng-click="addEvent(0)" class="first">
+
+            </div>
+            <div ng-click="addEvent(1)">
+
+            </div>
+        </td>
+    </tr>
+</table>
